@@ -1,0 +1,43 @@
+{
+  "name": "google-drive-uploader",
+  "version": "0.1.0",
+  "description": "Monitors a folder and uploads the files to Google Drive",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/kpe-rainy/google-drive-uploader"
+  },
+  "author": "Kimmo Pekkola",
+  "license": "MIT",
+  "scripts": {
+    "watch": "tsc -w",
+    "build": "tsc",
+    "start": "node dist/main.js",
+    "start:watch": "node dist/main.js watch -f /home/ipcam/media --delete-after-upload",
+    "start:forever": "forever start -a -l /home/ipcam/google-drive-uploader/forever.log -o /home/ipcam/google-drive-uploader/out.log-`date +%u` -e /home/ipcam/google-drive-uploader/err.log /home/ipcam/google-drive-uploader/dist/main.js watch -f /home/ipcam/media --delete-after-upload",
+    "stop:forever": "forever stopall",
+    "restart:forever": "forever stopall && touch /home/ipcam/google-drive-uploader/out.log && mv -f /home/ipcam/google-drive-uploader/out.log /home/ipcam/google-drive-uploader/out.log.1 && yarn start:forever",
+    "test": "jest --coverage",
+    "test:watch": "jest --coverage --watch"
+  },
+  "dependencies": {
+    "command-line-args": "^5.1.1",
+    "command-line-usage": "^6.1.0",
+    "console-stamp": "^3.0.0-rc3.0",
+    "debounce": "^1.2.0",
+    "env-paths": "^2.2.0",
+    "google-auth-library": "^5.6.1",
+    "node-watch": "^0.6.3",
+    "readdirp": "^3.3.0"
+  },
+  "devDependencies": {
+    "@types/command-line-args": "^5.0.0",
+    "@types/command-line-usage": "^5.0.1",
+    "@types/console-stamp": "^0.2.32",
+    "@types/debounce": "^1.2.0",
+    "@types/jest": "^24.0.23",
+    "@types/node": "^12.12.14",
+    "jest": "^24.9.0",
+    "ts-jest": "^24.2.0",
+    "typescript": "^3.7.3"
+  }
+}
