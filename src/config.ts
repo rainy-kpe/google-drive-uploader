@@ -150,11 +150,11 @@ const config = async (options: CommandLineOptions) => {
     const filePath = path.join(paths.config, "config.json")
 
     let config = await readConfig(true)
-    //    config = await askClientInfo(config, ask)
-    //    config = await askAuthCode(config, ask)
+    config = await askClientInfo(config, ask)
+    config = await askAuthCode(config, ask)
 
-    //    await writeFile(filePath, JSON.stringify(config, null, 2))
-    //    console.log(`Wrote "${filePath}"`)
+    await writeFile(filePath, JSON.stringify(config, null, 2))
+    console.log(`Wrote "${filePath}"`)
 
     config = await askFolder(config, ask)
 
