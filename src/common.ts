@@ -75,7 +75,7 @@ export const fetchFiles = async (config: Config) => {
         url: "https://www.googleapis.com/drive/v3/files",
         params: {
           q: `'${config.folderId}' in parents and trashed=false`,
-          fields: "files(id,name,createdTime)",
+          fields: "files(id,name,createdTime),nextPageToken",
           pageSize: 100,
           pageToken: nextPageToken,
         },
